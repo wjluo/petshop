@@ -6,8 +6,8 @@
 <footer class="page-footer font-small blue">
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a href="mailto:apostolosxenos@outlook.com"><strong>Apostolos Xenos</strong></a>
+    <div class="footer-copyright text-center py-3">Created by
+        <a href="mailto:apostolosxenos@outlook.com">Apostolos Xenos</a>
     </div>
     <!-- Copyright -->
 
