@@ -1,0 +1,88 @@
+/* BASIC */
+
+html {
+    background-color: rebeccapurple;
+}
+
+body {
+    font-size: 16px;
+    height: 100vh;
+}
+
+a {
+    color: mediumpurple;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+h2 {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 40px 8px 10px 8px;
+    color: #cccccc;
+}
+
+/* Simple CSS3 Fade-in Animation */
+
+.underlineHover:after {
+    display: block;
+    left: 0;
+    bottom: -10px;
+    width: 0;
+    height: 2px;
+    background-color: rebeccapurple;
+    content: "";
+    transition: width 0.2s;
+}
+
+.underlineHover:hover {
+    color: rebeccapurple;
+}
+
+.underlineHover:hover:after {
+    width: 100%;
+}
+
+#noLinkUnderline {
+    text-decoration: none;
+}
+
+/* OTHERS */
+
+*:focus {
+    outline: none;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+}
+
+.price {
+    color: darkorange;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: rebeccapurple;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.card button:hover {
+    opacity: 0.7;
+}

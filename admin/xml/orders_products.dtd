@@ -1,0 +1,11 @@
+<?xml encoding="UTF-8"?>
+<!ELEMENT data (order+,popular_product+)>
+<!ELEMENT order (order_id,firstname,lastname,total_cost)>
+<!ELEMENT popular_product (product_id,name,product_total_sell_quantity)>
+<!ELEMENT order_id (#PCDATA)>
+<!ELEMENT firstname (#PCDATA)>
+<!ELEMENT lastname (#PCDATA)>
+<!ELEMENT total_cost (#PCDATA)>
+<!ELEMENT product_id (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT product_total_sell_quantity (#PCDATA)>
