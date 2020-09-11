@@ -42,14 +42,11 @@ if (isset($_POST["add_to_cart"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style/style_main.css">
 </head>
 
-<div class="page container" style="position: relative; min-height: 100vh;">
+<div class="page container">
 
     <!--- WEBSITE HEADER -->
 
@@ -86,7 +83,7 @@ if (isset($_POST["add_to_cart"])) {
                                         <a class="dropdown-item" href="orders-history.php"><strong>Ιστορικό
                                                 Παραγγελιών</strong></a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="../logout.php">Αποσύνδεση</a>
+                                        <a class="dropdown-item" href="logout.php">Αποσύνδεση</a>
                                     </div>
                                 </div>
                             <?php else : ?>
@@ -108,10 +105,8 @@ if (isset($_POST["add_to_cart"])) {
                                         $number_of_products = $number_of_products + $value["product_quantity"];
                                     } ?>
                                     <a class="underlineHover products" id="noLinkUnderline" href="cart.php">
-                                        <strong><span
-                                                    id="number_of_products"><?php echo $number_of_products ?></span></strong>
-                                        προϊόντα (<strong><span
-                                                    id="total_price"><?php echo number_format($total, 2) . "€" ?></span></strong>)
+                                        <strong><span id="number_of_products"><?php echo $number_of_products ?></span></strong>
+                                        προϊόντα (<strong><span id="total_price"><?php echo number_format($total, 2) . "€" ?></span></strong>)
                                     </a>
                                 <?php else : ?>
                                     <a class="underlineHover" id="noLinkUnderline" href="cart.php">Το καλάθι είναι
@@ -129,13 +124,12 @@ if (isset($_POST["add_to_cart"])) {
                             <img src="images/email.png" width="25">
                         </td>
                         <td style="font-size: 15px; text-align:center">
-                            <a class="underlineHover" id="noLinkUnderline" href="mailto:sales@demopetshop.gr">sales@demopetshop.gr</a>
+                            <a class="underlineHover" id="noLinkUnderline" href="mailto:info@petshop.demo">info@petshop.demo</a>
                         </td>
                         <td align="right">
                             <img src="images/telephone.png" width="20">
                         </td>
-                        <td class="underlineHover" id="noLinkUnderline" style="color:rebeccapurple; font-size: 15px"
-                            align="center"><strong>+30 2101234567</strong>
+                        <td class="underlineHover" id="noLinkUnderline" style="color:rebeccapurple; font-size: 15px" align="center"><strong>+30 2101234567</strong>
                         </td>
                     </tr>
                 </table>
