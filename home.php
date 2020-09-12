@@ -40,10 +40,11 @@ include('inc/header.php');
                         </div>
 
 
-                        <p class="price"><?php echo $row['price'] ?> €</p>
-                        <p class="p-3" style="text-align: justify;"><?php echo $row['description'] ?></p>
+                        <p class="price"><?php echo number_format($row['price'], 2, ',', '.') ?> €</p>
+                        <!-- <p class="p-3" style="text-align: justify;"><?php echo $row['description'] ?></p> -->
 
-                        <button class='btn btn-outline-warning btn-sm'>Add to Cart <i class='fa fa-shopping-cart'></i></button>
+                        <button class='btn'>
+                            <i class='fa fa-shopping-cart'></i></button>
 
                     </div>
 
@@ -85,10 +86,11 @@ include('inc/header.php');
                         </div>
 
 
-                        <p class="price"><?php echo $row2['price'] ?> €</p>
-                        <p class="p-3" style="text-align: justify;"><?php echo $row2['description'] ?></p>
+                        <p class="price"><?php echo number_format($row2['price'], 2, ',', '.') ?> €</p>
+                        <!-- <p class="p-3" style="text-align: justify;"><?php echo $row2['description'] ?></p> -->
 
-                        <button class='btn btn-outline-warning btn-sm'>Add to Cart <i class='fa fa-shopping-cart'></i></button>
+
+                        <button><i class='fa fa-shopping-cart'></i></button>
 
                     </div>
 
