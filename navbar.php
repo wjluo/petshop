@@ -6,7 +6,7 @@
         <div class="navbar-collapse collapse" id="navbar10">
             <ul class="navbar-nav nav-fill w-100">
                 <li class="nav-item">
-                    <a class="nav-link" href="dogs.php">
+                    <a class="nav-link" href="<?php echo ROOT_URI . 'dogs/products.php' ?>">
                         <h5>ΣΚΥΛΟΙ</h5>
                     </a>
                 </li>

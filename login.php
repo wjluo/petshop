@@ -1,5 +1,5 @@
 <?php
-include('inc/header.php');
+include('header.php');
 ?>
 <div>
     <form name="userLoginForm" method="post" action="<?php echo htmlspecialchars('server.php') ?>" onsubmit="return validateLoginForm()">
@@ -21,4 +21,4 @@ include('inc/header.php');
 </div>
 
 
-<?php include('inc/footer.php'); ?>
+<?php include('footer.php'); ?>

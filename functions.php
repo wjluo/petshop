@@ -1,10 +1,11 @@
 <?php
+
 function get_enum($db, $table_name, $field_name)
 {
     $sql = "desc {$table_name} {$field_name}";
-    $result = mysqli_query($db, $sql);
+    $result = $db->query($sql);
 
-    while ($row = mysqli_fetch_array($result)) {
+    while ($row = $result->fetch_assoc()) {
         $category_type = $row['Type'];
     }
 
@@ -17,11 +18,10 @@ function get_enum($db, $table_name, $field_name)
 
 function getUserEmail($db, $table_name, $user_id)
 {
+    $sql = "SELECT `email` FROM `users` WHERE user_id=$user_id";
+    $result = $db->query($sql);
 
-    $sql = "SELECT email FROM user WHERE user_id=$user_id";
-    $result = mysqli_query($db, $sql);
-
-    while ($row = mysqli_fetch_array($result)) {
+    while ($row = $result->fetch_assoc()) {
         $email = $row['email'];
     }
 
