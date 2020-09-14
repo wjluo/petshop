@@ -5,6 +5,11 @@
         </button>
         <div class="navbar-collapse collapse" id="navbar10">
             <ul class="navbar-nav nav-fill w-100">
+            <li class="nav-item">
+                    <a class="nav-link" href="<?php echo ROOT_URI . 'index.php' ?>">
+                        <h5>ΑΡΧΙΚΗ</h5>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo ROOT_URI . 'dogs/products.php' ?>">
                         <h5>ΣΚΥΛΟΙ</h5>

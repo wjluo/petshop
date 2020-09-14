@@ -1,6 +1,7 @@
 <?php
 
 require('../config.php');
+require('../functions.php');
 
 if (isset($_POST['action']) && $_POST['action'] === "filter") {
 
@@ -11,8 +12,14 @@ if (isset($_POST['action']) && $_POST['action'] === "filter") {
 
 function filter_products_by_category($db, $category)
 {
-    $sql = "SELECT * FROM `products` WHERE `category` = '" . $category . "'";
-    $result = $db->query($sql);
+
+    $category = htmlspecialchars($category);
+    $sql = "SELECT * FROM `products` WHERE `category` = ? ORDER BY `price` ASC";
+    $stmt = $db->prepare($sql);
+    $stmt->bind_param("s",$category);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
     $output = "";
 
     while ($row = $result->fetch_assoc()) {
@@ -34,14 +41,13 @@ function filter_products_by_category($db, $category)
                             </tr>
                             <tr>
                                 <td style="text-align:center">
-                                    <h4 class="text-danger">
-                                    ' . $row["price"] . '€</h4>
+                                    <h4 class="text-danger">' . nf($row["price"]) . ' €</h4>
                                 </td>
                                 <td style="text-align:left">
                                     <input type="number" name="quantity" style="width: 3em" value="1" min="1" max="' . $row['stock'] . '">
                                     <button type="submit" name="add_to_cart" class="btn btn-outline-warning btn-sm"><i class="fa fa-shopping-cart"></i></button>
                                     <input type="hidden" name="hidden_name" value="' . $row['name'] . '">
-                                    <input type="hidden" name="hidden_price" value="' . $row['price'] . '">
+                                    <input type="hidden" name="hidden_price" value="' . nf($row["price"]) . '">
                                 </td>
                             </tr>
                         </table>

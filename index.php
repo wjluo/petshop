@@ -40,7 +40,7 @@ include('header.php');
                         </div>
 
 
-                        <p class="price"><?php echo number_format($row['price'], 2, ',', '.') ?> €</p>
+                        <p class="price"><?php echo nf($row["price"]); ?> €</p>
                         <!-- <p class="p-3" style="text-align: justify;"><?//php echo $row['description'] ?></p> -->
 
                         <button class='btn'>Προσθήκη στο <i class='fa fa-shopping-cart'></i></button>
@@ -60,7 +60,7 @@ include('header.php');
 
     <h4 style="color: rebeccapurple; margin-top: 20px; margin-bottom: 10px"><b>Δημοφιλή Προϊόντα</b></h4>
 
-    <div class="row">
+    <div class="row mb-5">
 
         <?php $sql2 = "SELECT *, sum(product_quantity) as product_total_sell_quantity 
                 FROM orders_products op JOIN products p on op.product_id = p.product_id 
@@ -85,7 +85,7 @@ include('header.php');
                         </div>
 
 
-                        <p class="price"><?php echo number_format($row2['price'], 2, ',', '.') ?> €</p>
+                        <p class="price"><?php echo nf($row2["price"]); ?> €</p>
                         <!-- <p class="p-3" style="text-align: justify;"><?//php echo $row2['description'] ?></p> -->
 
 

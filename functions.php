@@ -27,3 +27,8 @@ function getUserEmail($db, $table_name, $user_id)
 
     return $email;
 }
+
+function nf($price)
+{
+    return number_format($price, 2, ",", ".");
+}

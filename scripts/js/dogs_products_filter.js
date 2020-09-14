@@ -7,7 +7,7 @@ $('.category').click(function() {
             category: category
         })
         .done(function(data) {
-            $('.col-sm-9').html(data);
+            $('#products-div').html(data);
         })
         .fail(function(xhr, status, error) {
             var errorMessage = xhr.status + ': ' + xhr.statusText
