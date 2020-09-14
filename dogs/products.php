@@ -2,28 +2,20 @@
 
 require_once('../header.php');
 require_once('../functions.php');
-//require_once('../session-cart.php');
+require_once('../session-cart.php');
 
-$categories = get_enum($db, 'products', 'category');
-
-if (!empty($_POST['category'])) {
-
-    $category = $_POST['category'];
-    $sql = "SELECT * FROM `products` WHERE `category` = '$category'";
-} else {
-
-    $sql = "SELECT * FROM `products` LIMIT 0,3";
-}
-
+$sql = "SELECT * FROM `products`";
 $result = $db->query($sql);
+
+$categories = get_enums($db, 'products', 'category');
+
 
 ?>
 
-<br>
 
 <!--- WEBSITE DATA -->
 
-<div class="container">
+<div class="container mt-5">
 
     <div class="row">
 
@@ -81,7 +73,7 @@ $result = $db->query($sql);
                             </td>
                             <td style="text-align:left">
                                 <input type="number" name="quantity" style="width: 3em" value="1" min="1" max="<?php echo $row['stock']; ?>">
-                                <button type="submit" name="add_to_cart" class='btn btn-outline-warning btn-sm'><i class="fa fa-shopping-cart"></i></button>
+                                <button type="submit" name="add_to_cart" class="btn btn-outline-warning btn-sm"><i class="fa fa-shopping-cart"></i></button>
                                 <input type="hidden" name="hidden_name" value="<?php echo $row['name']; ?>">
                                 <input type="hidden" name="hidden_price" value="<?php echo $row['price']; ?>">
                             </td>
@@ -92,25 +84,6 @@ $result = $db->query($sql);
             <?php } ?>
         </div>
     </div>
-</div><?php include('../footer.php'); ?>
-<script>
-    $('.category').click(function() {
-
-        var selectedCategory = this.id;
-
-        $.ajax({
-            type: 'POST',
-            url: 'products.php',
-            data: {
-                category: selectedCategory
-            }
-        }).done(function() {
-
-            $('.col-sm-9').load('products-ajax.php .col-sm-9');
-
-        }).fail(function(xhr, status, error) {
-            var errorMessage = xhr.status + ': ' + xhr.statusText
-            alert('Error - ' + errorMessage);
-        });
-    });
-</script>
+</div>
+<script type="text/javascript" src="../scripts/js/dogs_products_filter.js"></script>
+<?php include('../footer.php'); ?>

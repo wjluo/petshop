@@ -1,6 +1,6 @@
 <?php
 
-function get_enum($db, $table_name, $field_name)
+function get_enums($db, $table_name, $field_name)
 {
     $sql = "desc {$table_name} {$field_name}";
     $result = $db->query($sql);
