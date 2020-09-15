@@ -40,7 +40,7 @@ include('header.php');
                         </div>
 
 
-                        <p class="price"><?php echo nf($row["price"]); ?> €</p>
+                        <p class="price"><?php echo nf($row['price']); ?> €</p>
                         <!-- <p class="p-3" style="text-align: justify;"><?//php echo $row['description'] ?></p> -->
 
                         <button class='btn'>Προσθήκη στο <i class='fa fa-shopping-cart'></i></button>
@@ -85,7 +85,7 @@ include('header.php');
                         </div>
 
 
-                        <p class="price"><?php echo nf($row2["price"]); ?> €</p>
+                        <p class="price"><?php echo nf($row2['price']); ?> €</p>
                         <!-- <p class="p-3" style="text-align: justify;"><?//php echo $row2['description'] ?></p> -->
 
 

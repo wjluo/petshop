@@ -24,7 +24,7 @@
 
             <div class="navbar-nav">
 
-                <a href="login.php" class="nav-item nav-link nav-purple"><i class="fas fa-user"></i></a>
+                <a href="<?php echo ROOT_URI . "login.php" ?>" class="nav-item nav-link nav-purple"><i class="fas fa-user"></i></a>
 
 
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION('loggedin')) { ?>
@@ -33,7 +33,7 @@
 
                 <?php } ?>
 
-                <a href="cart.php" class="nav-item nav-link nav-purple"><i class="fas fa-shopping-cart"></i></a>
+                <a href="<?php echo ROOT_URI . "cart.php" ?>" class="nav-item nav-link nav-purple"><i class="fas fa-shopping-cart"></i></a>
 
             </div>
 

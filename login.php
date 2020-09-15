@@ -2,7 +2,7 @@
 include('header.php');
 ?>
 <div>
-    <form name="userLoginForm" method="post" action="<?php echo htmlspecialchars('server.php') ?>" onsubmit="return validateLoginForm()">
+    <form name="userLoginForm" method="POST" action="<?php echo htmlspecialchars('server.php') ?>" onsubmit="return validateLoginForm()">
         <div class="wrapper fadeInDown">
             <div id="formContent">
                 <!-- Login Form -->
