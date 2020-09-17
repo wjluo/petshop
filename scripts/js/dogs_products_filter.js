@@ -18,12 +18,15 @@ $('.category').click(function () {
 
 $('#order-desc').click(function () {
 
+    var order = "desc";
+
     $.post("filter.php", {
+
             filter: "price",
-            order: "desc"
+            order: order
         })
         .done(function (data) {
-            window.history.replaceState(null, null, "?price=" + price);
+            window.history.replaceState(null, null, "?category=&price_order=" + order);
             $('#products-div').html(data);
         })
         .fail(function (xhr, status, error) {
