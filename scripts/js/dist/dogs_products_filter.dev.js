@@ -16,52 +16,53 @@ $('.category').click(function () {
     var errorMessage = xhr.status + ': ' + xhr.statusText;
     alert('Error - ' + errorMessage);
   });
-}); // $('.order-products').click(function () {
-//     var params = [];
-//     var price_order = this.id;
-//     params.push(price_order);
-//     if (urlParams.has('category')) {
-//         var category = urlParams.get('category');
-//         params.push(category);
-//     }
-//     alert(params);
-//     $.post('filter.php', {
-//             action: "price_order",
-//             price_order: price_order,
-//             category: category
-//         })
-//         .done(function (data) {
-//             urlParams.set('price_order', price_order);
-//             window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
-//             $('#products-div').html(data);
-//         })
-//         .fail(function (xhr, status, error) {
-//             var errorMessage = xhr.status + ': ' + xhr.statusText
-//             alert('Error - ' + errorMessage);
-//         });
-// });
+});
+$('.order-products').click(function () {
+  var params = [];
+  var price_order = this.id;
+  params.push(price_order);
+
+  if (urlParams.has('category')) {
+    var category = urlParams.get('category');
+    params.push(category);
+  }
+
+  $.post('filter.php', {
+    action: "price_order",
+    price_order: price_order,
+    category: category
+  }).done(function (data) {
+    urlParams.set('price_order', price_order);
+    urlParams.set('category', category);
+    window.history.replaceState({}, '', "".concat(location.pathname, "?").concat(urlParams));
+    $('#products-div').html(data);
+  }).fail(function (xhr, status, error) {
+    var errorMessage = xhr.status + ': ' + xhr.statusText;
+    alert('Error - ' + errorMessage);
+  });
+});
 
 function convertCategoryGreekToEnglish(cat) {
   var category_eng = "";
 
   switch (cat) {
-    case "Τροφή":
+    case "ΤΡΟΦΗ":
       category_eng = "trofi";
       break;
 
-    case "Λιχουδιές":
+    case "ΛΙΧΟΥΔΙΕΣ":
       category_eng = "lichoudies";
       break;
 
-    case "Κολάρα":
+    case "ΚΟΛΑΡΑ":
       category_eng = "kolara";
       break;
 
-    case "Ρούχα":
+    case "ΡΟΥΧΑ":
       category_eng = "roucha";
       break;
 
-    case "Παιχνίδια":
+    case "ΠΑΙΧΝΙΔΙΑ":
       category_eng = "paichnidia";
       break;
   }

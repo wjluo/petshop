@@ -2,9 +2,9 @@
 
 
 <!-- Footer -->
-<footer class="page-footer font-small blue">
+<footer class="page-footer font-small" style="background-color:#343a40">
 
-    <p>Created by Apostolos Xenos</p>
+    <p class="m-1">Created by Apostolos Xenos</p>
 
 </footer>
 <!-- Footer -->

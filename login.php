@@ -1,7 +1,6 @@
-<?php
-include('header.php');
-?>
-<div>
+<?php include('header.php'); ?>
+
+<div style="min-height: 100%">
     <form name="userLoginForm" method="POST" action="<?php echo htmlspecialchars('server.php') ?>" onsubmit="return validateLoginForm()">
         <div class="wrapper fadeInDown">
             <div id="formContent">
@@ -19,6 +18,3 @@ include('header.php');
         </div>
     </form>
 </div>
-
-
-<?php include('footer.php'); ?>

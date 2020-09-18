@@ -1,17 +1,12 @@
-<?php
-
-include('header.php');
-
-
-?>
+<?php include('header.php'); ?>
 
 <!--- WEBSITE DATA -->
 
-<div class="content-wrapper">
+<div class="container">
 
     <!-- AD -->
 
-    <div class="mx-auto mt-3 mb-3" align="center">
+    <div class="mx-auto mt-4 mb-3" align="center">
         <a href="https://www.petshop.demo">
             <img src="images/ad.png">
         </a>
@@ -19,15 +14,18 @@ include('header.php');
 
     <!-- LATEST ARRIVALS -->
 
-    <h4 style="color: rebeccapurple; margin-top:20px; margin-bottom:10px;"><b>Τελευταίες Αφίξεις</b></h4>
+    <h5 class="mb-3" style="color: rebeccapurple; font-weight: bold">Τελευταίες Αφίξεις</h5>
 
-    <div class="row">
+    <div class="row mb-5">
+
         <?php $sql = "SELECT * FROM `products` ORDER BY `product_id` DESC LIMIT 4";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) { ?>
 
                 <div class="col-md-3">
+
+
 
                     <div class="card h-100">
 
@@ -40,8 +38,8 @@ include('header.php');
                         </div>
 
 
-                        <p class="price"><?php echo nf($row['price']); ?> €</p>
-                        <!-- <p class="p-3" style="text-align: justify;"><?//php echo $row['description'] ?></p> -->
+                        <h4 style="color:rebeccapurple; font-weight:bold">
+                                        <?php echo nf($row["price"]); ?> €</h4>
 
                         <button class='btn'>Προσθήκη στο <i class='fa fa-shopping-cart'></i></button>
 
@@ -57,8 +55,8 @@ include('header.php');
 
     <!-- POPULAR PRODUCTS -->
 
+    <h5 class="mb-3" style="color: rebeccapurple; font-weight: bold">Δημοφιλή Προϊόντα</h5>
 
-    <h4 style="color: rebeccapurple; margin-top: 20px; margin-bottom: 10px"><b>Δημοφιλή Προϊόντα</b></h4>
 
     <div class="row mb-5">
 
@@ -85,8 +83,8 @@ include('header.php');
                         </div>
 
 
-                        <p class="price"><?php echo nf($row2['price']); ?> €</p>
-                        <!-- <p class="p-3" style="text-align: justify;"><?//php echo $row2['description'] ?></p> -->
+                        <h4 style="color:rebeccapurple; font-weight:bold">
+                                        <?php echo nf($row2["price"]); ?> €</h4>
 
 
                         <button class='btn'>Προσθήκη στο <i class='fa fa-shopping-cart'></i></button>
@@ -97,10 +95,8 @@ include('header.php');
 
         <?php }
         } ?>
+
     </div>
-
 </div>
-
-
 
 <?php include('footer.php'); ?>
