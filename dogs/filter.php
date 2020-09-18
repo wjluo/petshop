@@ -35,14 +35,14 @@ if (isset($_POST['action']) && $_POST['action'] === "price_order") {
 
 //-------------------------------------------------------------------------
 
-function by_price($db, $order, $category)
+function by_price($db, $price_order, $category)
 {
     if (!empty($category)) {
         $category = htmlspecialchars($category);
         $where = "WHERE `category` = '$category'";
     } else $where = "";
 
-    $sql = "SELECT * FROM `products` $where ORDER BY `price` $order LIMIT 0,5";
+    $sql = "SELECT * FROM `products` $where ORDER BY `price` $price_order LIMIT 0,4";
     $result = $db->query($sql);
 
     $output = "";
@@ -59,14 +59,15 @@ function by_category($db, $category, $price_order)
 {
     if (empty($price_order)) {
 
-        $price_order = "ORDER BY `price`";
+        $order_by_str = "ORDER BY `price`";
 
     } else {
 
-        $price_order = "ORDER BY `price` $price_order";
+        $order_by_str = "ORDER BY `price` $price_order";
     }
 
-    $sql = "SELECT * FROM `products` WHERE `category` = ? LIMIT 0,5";
+    $sql = "SELECT * FROM `products` WHERE `category` = ? "; 
+    $sql .= "$order_by_str LIMIT 0,4";
     $stmt = $db->prepare($sql);
     $stmt->bind_param("s", $category);
     $stmt->execute();

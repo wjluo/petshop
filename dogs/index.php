@@ -5,9 +5,7 @@ require_once('../header.php');
 
 $categories = get_enums($db, 'products', 'category');
 
-$category = $_GET['category'] ?? null;
-$category = htmlspecialchars($category, ENT_QUOTES, 'UTF-8');
-
+$category = isset($_GET['category']) ? htmlspecialchars($_GET['category'], ENT_QUOTES, 'UTF-8') : "";
 
 if (!empty($category)) {
 
@@ -17,7 +15,8 @@ if (!empty($category)) {
     $stmt->execute();
     $result = $stmt->get_result();
     $stmt->close();
-} else {
+} 
+else {
 
     $sql = "SELECT * FROM `products` ORDER BY `price` ASC";
     $result = $db->query($sql);
