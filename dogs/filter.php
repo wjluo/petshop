@@ -3,32 +3,46 @@
 require('../config.php');
 require('../functions.php');
 
-if (isset($_POST['filter']) && $_POST['filter'] === "category") {
+//-------------------------------------------------------------------------
 
-    if (isset($_POST['category']) && !empty($_POST['category'])) {
-        by_category($db, $_POST['category']);
+
+if (isset($_POST['action']) && $_POST['action'] === "category") {
+
+    if (!empty($_POST['category'])) {
+
+        $category = htmlspecialchars($_POST['category'], ENT_QUOTES, 'UTF-8');
+        $price_order = !empty($_POST['price_order']) ?
+            htmlspecialchars($_POST['category'], ENT_QUOTES, "UTF-8") : "";
+
+
+        by_category($db, $category, $price_order);
     }
 }
 
-if (isset($_POST['filter']) && $_POST['filter'] === "price") {
 
-    if (isset($_POST['order']) && !empty($_POST['order'])) {
+if (isset($_POST['action']) && $_POST['action'] === "price_order") {
 
+    if (!empty($_POST["price_order"])) {
 
-        by_price($db, $_POST['order'],$_POST['order']);
+        $price_order = htmlspecialchars($_POST['price_order'], ENT_QUOTES, 'UTF-8');
+        $category = !empty($_POST['category']) ?
+            htmlspecialchars($_POST['category'], ENT_QUOTES, 'UTF-8') : "";
+
+        by_price($db, $price_order, $category);
     }
 }
 
-function by_price($db, $order, $category = null)
+
+//-------------------------------------------------------------------------
+
+function by_price($db, $order, $category)
 {
-    $where = "";
-
     if (!empty($category)) {
         $category = htmlspecialchars($category);
         $where = "WHERE `category` = '$category'";
-    }
+    } else $where = "";
 
-    $sql = "SELECT * FROM `products` $where ORDER BY `price` $order";
+    $sql = "SELECT * FROM `products` $where ORDER BY `price` $order LIMIT 0,5";
     $result = $db->query($sql);
 
     $output = "";
@@ -41,10 +55,18 @@ function by_price($db, $order, $category = null)
     echo $output;
 }
 
-function by_category($db, $category)
+function by_category($db, $category, $price_order)
 {
-    $category = htmlspecialchars($category);
-    $sql = "SELECT * FROM `products` WHERE `category` = ? ORDER BY `price` ASC";
+    if (empty($price_order)) {
+
+        $price_order = "ORDER BY `price`";
+
+    } else {
+
+        $price_order = "ORDER BY `price` $price_order";
+    }
+
+    $sql = "SELECT * FROM `products` WHERE `category` = ? LIMIT 0,5";
     $stmt = $db->prepare($sql);
     $stmt->bind_param("s", $category);
     $stmt->execute();

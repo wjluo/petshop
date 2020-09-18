@@ -17,7 +17,6 @@ if (!empty($category)) {
     $stmt->execute();
     $result = $stmt->get_result();
     $stmt->close();
-
 } else {
 
     $sql = "SELECT * FROM `products` ORDER BY `price` ASC";
@@ -67,10 +66,11 @@ if (!empty($category)) {
             <div class="text-right mb-4">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Αύξουσα τιμή
+                        Ταξινόμηση
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <button class="dropdown-item" id="order-desc">Φθίνουσα τιμή</button>
+                        <button class="dropdown-item order-products" id="asc">Αύξουσα τιμή</button>
+                        <button class="dropdown-item order-products" id="desc">Φθίνουσα τιμή</button>
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo ROOT_URI . 'dogs/products.php' ?>">
+                    <a class="nav-link" href="<?php echo ROOT_URI . 'dogs/' ?>">
                         <h5>ΣΚΥΛΟΙ</h5>
                     </a>
                 </li>
