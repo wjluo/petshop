@@ -16,8 +16,6 @@ $('.category').click(function () {
 
             urlParams.set('category', category);
             window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
-
-
             $('#products-div').html(data);
         })
         .fail(function (xhr, status, error) {

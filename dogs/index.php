@@ -5,21 +5,23 @@ require_once('../header.php');
 
 $categories = get_enums($db, 'products', 'category');
 
-$category = isset($_GET['category']) ? htmlspecialchars($_GET['category'], ENT_QUOTES, 'UTF-8') : "";
+// $category = isset($_GET['category']) ? htmlspecialchars($_GET['category'], ENT_QUOTES, 'UTF-8') : "";
 
-if (!empty($category)) {
+// if (!empty($_GET['page']) && !empty($category)) {
 
-    $sql = "SELECT * FROM `products` WHERE `category_slang` = ? ORDER BY `price` ASC";
-    $stmt = $db->prepare($sql);
-    $stmt->bind_param("s", $category);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $stmt->close();
-} else {
+//     $sql = "SELECT * FROM `products` WHERE `category_slang` = ? ORDER BY `price` ASC LIMIT $start_from, $limit";
+//     $stmt = $db->prepare($sql);
+//     $stmt->bind_param("s", $category);
+//     $stmt->execute();
+//     $result = $stmt->get_result();
+//     $stmt->close();
+// } else {
 
-    $sql = "SELECT * FROM `products` ORDER BY `price` ASC";
-    $result = $db->query($sql);
-}
+$limit = 4;
+
+$sql = "SELECT * FROM `products` ORDER BY `price` ASC LIMIT 0, $limit";
+$result = $db->query($sql);
+// }
 
 ?>
 
@@ -44,7 +46,7 @@ if (!empty($category)) {
 
                     <?php foreach ($categories as $category) { ?>
 
-                        <tr >
+                        <tr>
                             <td class="category text-center" id="<?php echo $category; ?>">
                                 <?php echo $category; ?>
                             </td>
@@ -111,10 +113,56 @@ if (!empty($category)) {
                 <?php } ?>
             </div>
 
+            <div class="mt-4">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+
+                        <?php
+
+                        $sql_count = "SELECT COUNT(product_id) FROM `products`";
+                        $rs_count = $db->query($sql_count);
+                        $count = $rs_count->fetch_row()[0];
+
+                        $total_pages = ceil($count / $limit);
+
+                        if (!empty($total_pages)) {
+                            for ($page = 1; $page <= $total_pages; $page++) {
+                                if ($page == 1) { ?>
+                                    <li class="pageitem active" id="<?php echo $page; ?>"><a href="javascript:void(0);" data-id="<?php echo $page; ?>" class="page-link"><?php echo $page; ?></a></li>
+                                <?php } else { ?>
+                                    <li class="pageitem" id="<?php echo $page; ?>"><a href="javascript:void(0);" class="page-link" data-id="<?php echo $page; ?>"><?php echo $page; ?></a></li>
+                        <?php }
+                            }
+                        }
+                        ?>
+                    </ul>
+                </nav>
+            </div>
+
+
         </div>
     </div>
 </div>
 
 <?php include('../footer.php'); ?>
+<script>
+    $(document).ready(function() {
 
-<script type="text/javascript" src="../scripts/js/dogs_products_filter.js"></script>
+        $(".page-link").click(function() {
+            var id = $(this).attr("data-id");
+            var select_id = $(this).parent().attr("id");
+
+            $.get('filter.php', {
+                    page: id
+                })
+                .done(function(dataResult) {
+
+                    $("#products-div").html(dataResult);
+                    $(".pageitem").removeClass("active");
+                    $("#" + select_id).addClass("active");
+
+                });
+        });
+    });
+</script>
+<script src="/scripts/js/dogs_products_filter.js"></script>

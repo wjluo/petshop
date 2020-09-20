@@ -32,6 +32,28 @@ if (isset($_POST['action']) && $_POST['action'] === "price_order") {
     }
 }
 
+$limit = 4;
+
+if (empty($_GET['page'])) {
+
+    $page = 1;
+    
+} else {
+
+    $page = htmlspecialchars($_GET['page']);
+    $start_from = ($page - 1) * $limit;
+}
+
+$sql = "SELECT * FROM `products` ORDER BY `price` LIMIT $start_from, $limit";
+$rs_result = $db->query($sql);
+
+$output = "";
+
+while ($row = $rs_result->fetch_assoc()) {
+    $output .= generate_divs($row);
+}
+
+echo $output;
 
 //-------------------------------------------------------------------------
 

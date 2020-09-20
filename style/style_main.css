@@ -6,20 +6,20 @@ body {
 }
 
 a {
-    color:rebeccapurple;
+    color: rebeccapurple;
     display: inline-block;
     text-decoration: none;
 }
 
-/* h2 {
+h3 {
+    color: rebeccapurple;
+    font-size: 26px;
+    font-weight: 300;
     text-align: center;
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    display: inline-block;
-    margin: 40px 8px 10px 8px;
-    color: #cccccc;
-} */
+    /* text-transform: uppercase; */
+    position: relative;
+    margin: 30px 0 30px;
+}
 
 .navbar-nav li h5 {
     color: #f1f1f1;
@@ -41,10 +41,22 @@ a {
 
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
+    max-width: 250px;
     margin: auto;
     text-align: center;
     font-family: arial;
+}
+
+.card img {
+
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: 125px !important;
+    height: 125px !important;
+
 }
 
 .price {

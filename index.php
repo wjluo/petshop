@@ -14,23 +14,24 @@
 
     <!-- LATEST ARRIVALS -->
 
-    <h5 class="mb-3" style="color: rebeccapurple; font-weight: bold">Τελευταίες Αφίξεις</h5>
+    <h3>ΤΕΛΕΥΤΑΙΕΣ <b>ΑΦΙΞΕΙΣ</b></h3>
 
     <div class="row mb-5">
 
-        <?php $sql = "SELECT * FROM `products` ORDER BY `product_id` DESC LIMIT 4";
-        $result = $db->query($sql);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) { ?>
+        <div class="owl-carousel owl-theme" id="latest-arrivals">
 
-                <div class="col-md-3">
+            <?php $sql = "SELECT * FROM `products` ORDER BY `product_id` DESC";
+            $result = $db->query($sql);
+            if ($result->num_rows > 0) {
 
 
+
+                while ($row = $result->fetch_assoc()) { ?>
 
                     <div class="card h-100">
 
                         <div>
-                            <img src="<?php echo $row['image'] ?>" style="align-self:center; padding: 10px; width: 125px; height: 125px">
+                            <img src="<?php echo $row['image'] ?>">
                         </div>
 
                         <div style="min-height:100px; padding: 10px">
@@ -39,64 +40,85 @@
 
 
                         <h4 style="color:rebeccapurple; font-weight:bold">
-                                        <?php echo nf($row["price"]); ?> €</h4>
+                            <?php echo nf($row["price"]); ?> €</h4>
 
                         <button class='btn'>Προσθήκη στο <i class='fa fa-shopping-cart'></i></button>
 
                     </div>
 
-                </div>
+            <?php }
+            } ?>
 
-        <?php }
-        } ?>
-
+        </div>
     </div>
 
 
     <!-- POPULAR PRODUCTS -->
 
-    <h5 class="mb-3" style="color: rebeccapurple; font-weight: bold">Δημοφιλή Προϊόντα</h5>
+    <h3>ΔΗΜΟΦΙΛΗ <b>ΠΡΟΪΟΝΤΑ</b></h3>
 
 
     <div class="row mb-5">
 
-        <?php $sql2 = "SELECT *, sum(product_quantity) as product_total_sell_quantity 
+        <div class="owl-carousel owl-theme" id="popular-products">
+
+            <?php
+
+            $sql2 = "SELECT *, sum(product_quantity) as product_total_sell_quantity 
                 FROM orders_products op JOIN products p on op.product_id = p.product_id 
-                GROUP BY op.product_id ORDER BY product_total_sell_quantity DESC LIMIT 4";
+                GROUP BY op.product_id ORDER BY product_total_sell_quantity DESC";
 
-        $result2 = $db->query($sql2);
+            $result2 = $db->query($sql2);
 
-        if ($result->num_rows > 0) {
+
 
             while ($row2 = $result2->fetch_assoc()) { ?>
 
-                <div class="col-md-3">
 
-                    <div class="card h-100">
+                <div class="card">
 
-                        <div>
-                            <img src="<?php echo $row2['image'] ?>" style="align-self:center; padding: 10px; width: 125px; height: 125px">
-                        </div>
-
-                        <div style="min-height: 100px; padding: 10px">
-                            <h5><?php echo $row2['name'] ?></h5>
-                        </div>
-
-
-                        <h4 style="color:rebeccapurple; font-weight:bold">
-                                        <?php echo nf($row2["price"]); ?> €</h4>
-
-
-                        <button class='btn'>Προσθήκη στο <i class='fa fa-shopping-cart'></i></button>
-
+                    <div>
+                        <img src="<?php echo $row2['image'] ?>">
                     </div>
+
+                    <div style="min-height: 100px; padding: 10px">
+                        <h5><?php echo $row2['name'] ?></h5>
+                    </div>
+
+
+                    <h4 style="color:rebeccapurple; font-weight:bold">
+                        <?php echo nf($row2["price"]); ?> €</h4>
+
+
+                    <button class='btn'>Προσθήκη στο <i class='fa fa-shopping-cart'></i></button>
 
                 </div>
 
-        <?php }
-        } ?>
+            <?php } ?>
 
+        </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+
+        $("#latest-arrivals").owlCarousel({
+            autoplay: 3000,
+            items: 4,
+            itemsDesktop: [1199, 3],
+            itemsDesktopSmall: [979, 3],
+
+
+        });
+        $("#popular-products").owlCarousel({
+            autoplay: 3000,
+            items: 4,
+            itemsDesktop: [1199, 3],
+            itemsDesktopSmall: [979, 3]
+        });
+
+    });
+</script>
 
 <?php include('footer.php'); ?>
