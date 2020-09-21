@@ -58,7 +58,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo ROOT_URI . 'dogs/?page=1' ?>">
+                            <a class="nav-link" href="<?php echo ROOT_URI . 'dogs/' ?>">
                                 <h5>ΣΚΥΛΟΙ</h5>
                             </a>
                         </li>
