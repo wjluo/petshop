@@ -66,5 +66,5 @@ function generate_divs($row = array())
         </table>
     </div>';
 
-    return $divs;
+    echo $divs;
 }

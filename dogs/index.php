@@ -4,6 +4,9 @@ require_once('../header.php');
 
 $categories = get_enums($db, 'products', 'category');
 
+$sql = "SELECT * FROM `products`";
+$result = $db->query($sql);
+
 ?>
 
 
@@ -58,10 +61,18 @@ $categories = get_enums($db, 'products', 'category');
                 </div>
             </div>
 
-            <div id="products-div"></div>
+            <div id="products-div">
+                <?php while ($row = $result->fetch_assoc()) { ?>
+
+                    <?php generate_divs($row); ?>
+
+                <?php } ?>
+            </div>
 
             <div class="mt-4">
+
                 <nav aria-label="Page navigation">
+                
                     <ul class="pagination justify-content-center">
 
                         <?php
@@ -84,12 +95,9 @@ $categories = get_enums($db, 'products', 'category');
                     </ul>
                 </nav>
             </div>
-
-
         </div>
     </div>
 </div>
+<?php include('../footer.php'); ?>
 
 <script src="/scripts/js/dogs_products_filters.js"></script>
-
-<?php include('../footer.php'); ?>

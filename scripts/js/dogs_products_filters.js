@@ -1,6 +1,6 @@
 var urlParams = new URLSearchParams(window.location.search);
 
-$("#products-div").load("pagination.php?page=1");
+// $("#products-div").load("pagination.php?page=1");
 
 $(".page-link").click(function () {
 

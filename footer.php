@@ -1,4 +1,4 @@
-</div> <!-- page container -->
+
 
 
 <!-- Footer -->
