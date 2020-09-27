@@ -4,8 +4,7 @@ require_once('../header.php');
 
 $categories = get_enums($db, 'products', 'category');
 
-$sql = "SELECT * FROM `products`";
-$result = $db->query($sql);
+$result = get_all_from($db,'products');
 
 ?>
 
@@ -72,7 +71,7 @@ $result = $db->query($sql);
             <div class="mt-4">
 
                 <nav aria-label="Page navigation">
-                
+
                     <ul class="pagination justify-content-center">
 
                         <?php

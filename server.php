@@ -3,6 +3,13 @@
 require_once('config.php');
 session_start();
 
+// Check if the user is already logged in, if yes then redirect him to starting page
+
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+    header('Location: index.php');
+    exit;
+}
+
 //  User Registration
 
 if (isset($_POST['register_user'])) {
@@ -12,7 +19,7 @@ if (isset($_POST['register_user'])) {
     $email = $db->escape_string($_POST['email']);
     $password = $db->escape_string($_POST['password']);
 
-//  Checks if user exists
+    //  Checks if user exists
 
     $user_check_query = "SELECT * FROM `users` WHERE `email` = ?";
     $stmt = $db->prepare($user_check_query);
@@ -43,7 +50,7 @@ if (isset($_POST['register_user'])) {
         echo "<script>alert('Registration complete. Please log in.')</script>";
         echo "<script>window.location='login.php'</script>";
     } else {
-        die("Error:" . mysqli_error($db));
+        die("Error:" . $db->error);
         echo "<script>alert('Error during registration! Please try again.')</script>";
         echo "<script>window.location='registration.php'</script>";
     }
@@ -51,13 +58,13 @@ if (isset($_POST['register_user'])) {
 
 else if (isset($_POST['login_user'])) {
 
-    $email = mysqli_real_escape_string($db, $_POST['email']);
-    $password = mysqli_real_escape_string($db, $_POST['password']);
+    $email = $db->escape_string($_POST['email']);
+    $password = $db->escape_string($_POST['password']);
 
-    $password = md5($password);
+    $password_md5 = md5($password);
     $select_query = "SELECT * FROM `users` WHERE `email` = ? AND `password` = ?";
     $stmt = $db->prepare($select_query);
-    $stmt->bind_param('ss', $email, $password);
+    $stmt->bind_param('ss', $email, $password_md5);
     $result = $stmt->execute();
 
     if ($result->num_rows == 1) {

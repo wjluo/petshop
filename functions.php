@@ -16,21 +16,24 @@ function get_enums($db, $table_name, $field_name)
     return $results;
 }
 
-function getUserEmail($db, $table_name, $user_id)
+function get_user_email($db, $user_id)
 {
-    $sql = "SELECT `email` FROM `users` WHERE user_id=$user_id";
+    $sql = "SELECT `email` FROM `users` WHERE `user_id` = $user_id";
     $result = $db->query($sql);
 
-    while ($row = $result->fetch_assoc()) {
-        $email = $row['email'];
-    }
-
-    return $email;
+    return $result->fetch_assoc()['email'];
 }
 
 function nf($price)
 {
     return number_format($price, 2, ",", ".");
+}
+
+function get_all_from($db, $table)
+{
+    $sql = "SELECT * FROM $table";
+
+    return $db->query($sql);
 }
 
 function generate_divs($row = array())
