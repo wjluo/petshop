@@ -1,6 +1,6 @@
 <?php
-// Include config file
-require_once("config.php");
+
+require("config.php");
 
 // Define variables and initialize with empty values
 $email = $password = $confirm_password = "";
@@ -65,11 +65,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($email_err) && empty($password_err) && empty($confirm_password_err)) {
 
         // Prepare an insert statement
-        $sql = "INSERT INTO users (email, password) VALUES (?, ?)";
+        $sql = "INSERT INTO `users` (`email`, `password`, `role`) VALUES (?, ?, ?)";
 
         if ($stmt = $db->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
-            $stmt->bind_param("ss", $param_email, $param_password);
+
+            $role = "user";
+            $stmt->bind_param("sss", $param_email, $param_password, $role);
 
             // Set parameters
             $param_email = $email;
@@ -78,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
                 // Redirect to login page
-                header("location: login.php");
+                header("Location: index.php?registration=success");
             } else {
                 echo "Something went wrong. Please try again later.";
             }
@@ -96,6 +98,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php include("header.php"); ?>
 
 <div class="container">
+
+    <div class="register-wrapper">
+
+        <h4>Δημιουργία Λογαριασμού</h4>
+        <p>Συμπληρώστε τα παρακάτω στοιχεία.</p>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+                <label>E-mail</label>
+                <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
+                <span class="help-block"><?php echo $email_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                <label>Κωδικός</label>
+                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+                <span class="help-block"><?php echo $password_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                <label>Επαλήθευση Κωδικού</label>
+                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+                <span class="help-block"><?php echo $confirm_password_err; ?></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="form-control btn btn-primary mt-2" value="Εγγραφή">
+            </div>
+            <p>Έχετε ήδη λογαριασμό; <a href="login.php">Σύνδεση</a></p>
+        </form>
+    </div>
 
 
 </div>

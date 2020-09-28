@@ -24,10 +24,10 @@
 
                 <div class="navbar-nav">
 
-                    <a href="<?php echo ROOT_URI . "login.php" ?>" class="nav-item nav-link nav-purple"><i class="fas fa-user"></i></a>
+                    <a href="<?php echo ROOT_URI . "register.php" ?>" class="nav-item nav-link nav-purple"><i class="fas fa-user"></i></a>
 
 
-                    <?php if (isset($_SESSION['loggedin']) && $_SESSION('loggedin')) { ?>
+                    <?php if (isset($_SESSION['loggedin']) && $_SESSION('loggedin') === 'true') { ?>
 
                         <!-- <a href="cart.php" class="nav-item nav-link nav-purple"><i class="fas fa-shopping-cart"></i></a> -->
 

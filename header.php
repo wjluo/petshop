@@ -1,7 +1,7 @@
 <?php
 
-require('server.php');
-require('functions.php');
+require_once('config.php');
+require_once('functions.php');
 
 ?>
 
@@ -22,6 +22,7 @@ require('functions.php');
 
     <!-- Custom css -->
     <link rel="stylesheet" href="<?php echo ROOT_URI ?>style/main.css">
+    <link rel="stylesheet" href="<?php echo ROOT_URI ?>style/login.css">
     <link rel="stylesheet" href="<?php echo ROOT_URI ?>style/register.css">
 
     <!-- Important Owl css -->
